@@ -1,0 +1,55 @@
+#Hide Unavailable Date
+Flag=  INT(NOT(ISEMPTY(table_name)))
+
+#Median between measures
+median = MEDIANX(
+Union(
+    ROW("Measure", "Measure 1", "Measure Value",[One]),
+    ROW("Measure", "Measure 2", "Measure Value",[Two]),
+    ROW("Measure", "Measure 3", "Measure Value",[Three]),
+    ROW("Measure", "Measure 4", "Measure Value",[Four]),
+    ROW("Measure", "Measure 5", "Measure Value",[Five])
+),[Measure Value])
+
+
+#Show 0 instead blank 
+measure=measure+0
+
+#SUM by category
+SUM by category =
+CALCULATE (
+    AVERAGE ( Table3[Value] ),
+    FILTER ( ALLSELECTED ( Table3 ), Table3[Category] = MAX ( Table3[Category] ) )
+)
+
+#Create Time Table (Convert each column to Time datatype)
+Transaction Time = GENERATESERIES(0, 1439, 1)
+Time to the Minute = 
+TIMEVALUE(
+TIME(
+FLOOR('Transaction Time'[Minute of the Day]/60, 1),
+MOD('Transaction Time'[Minute of the Day], 60),
+0
+)
+)
+
+5 Minute Slot = FLOOR('Transaction Time'[Minute of the Day]/5, 1) * 5/1440
+10 Minute Slot = FLOOR('Transaction Time'[Minute of the Day]/10, 1) * 10/1440
+15 Minute Slot = FLOOR('Transaction Time'[Minute of the Day]/15, 1) * 15/1440
+30 Minute Slot = FLOOR('Transaction Time'[Minute of the Day]/30, 1) * 30/1440
+60 Minute Slot = FLOOR('Transaction Time'[Minute of the Day]/60, 1) * 60/1440
+MinDateMessage = ""Minimum date to be selected: ""
+& FORMAT(CALCULATE(MIN ('Calendar'[Date]),ALL('Calendar'[Date])),""DD/MM/YYYY"")
+
+
+#Replace string after a delimiter
+Replaced string = PATHITEM(SUBSTITUTE(AllUsers[UserPrincipalName],"@","|"),2)
+
+
+
+
+
+
+
+
+
