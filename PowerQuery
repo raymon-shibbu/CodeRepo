@@ -1,0 +1,71 @@
+##API Call with Client Secret & Client ID
+
+	let
+    Source = Json.Document(Web.Contents(""api_url"", [Headers=[client_secret=""xxxx"", client_id=""xxxx""]])),
+    #""Converted to Table"" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+   
+in
+   #""Converted to Table""
+   
+   //Expand to columns as next step in PowerQuery
+
+
+
+##API Call with Access Token
+let
+    Source = Json.Document(Web.Contents("api_url", [Headers=[Authorization=get_token()]])),
+    #"Converted to Table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error)
+in
+    #"Converted to Table"
+// expand table to retrieve fields
+
+
+##Transform single column into multiple columns based on row num
+Table.FromRows(List.Split(#"step"[Column],5))
+
+
+##Clean way to bulk load  csv files 
+Csv.Document([Content])
+
+##Clean way to bulk load excel files
+Excel.Workbook([Content])
+
+##Filter by list
+Table.SelectRows(#prevstep, each List.Contains(listname, [ColumnName]))
+
+##Filter by list
+Table.SelectRows(#prevstep, each List.Contains(listname, [ColumnName]))
+
+##Define datatype with custom Columns	add optional argument type after change type 
+https://gorilla.bi/power-query/define-data-type-custom-column/
+Data Type	Syntax 1	Syntax 2
+Whole Number	Int64.Type	–
+Decimal Number	Number.Type	type number
+Dates	Date.Type	type date
+Text	Text.Type	type text
+Binary		type binary
+Date/Time		type datetime
+Date/Time/Timezone		type datetimezone
+Duration		type duration
+Function		type function
+List		type list
+True/False		type logical
+Record		type record
+Any		type any
+Any Non-Null		type anynonnull
+None		type none
+Null		type null
+Type		type type
+
+##Load sharepoint excel file using web connector
+Open the sharepoint excel on excel desktop app
+Goto File->Info->Copy Path
+Use web connector in PBI and paste the path copied from excel file
+delete ‘?web=1’
+authenticate with credentials
+
+
+
+
+
+
