@@ -1,0 +1,15 @@
+##Unstack a Million Uneven Rows to Columns in Power Query
+https://www.youtube.com/watch?v=4XWXDn4gydY
+
+##Build correlation Plot or similarity/Commonality matrix 
+https://bielite.com/blog/native-correlation-matrix-power-bi/
+https://sidequests.blog/2023/08/01/creating-a-correlation-matrix-in-power-bi/
+
+##Single Date Picker
+https://community.fabric.microsoft.com/t5/Community-Blog/Power-BI-Single-Date-Picker-without-DAX/ba-p/2234213
+	"MinDateMessage = ""Minimum date to be selected: ""
+& FORMAT(CALCULATE(MIN ('Calendar'[Date]),ALL('Calendar'[Date])),""DD/MM/YYYY"")"
+
+##Text box with measure value
+https://community.fabric.microsoft.com/t5/Desktop/Values-in-text-boxes/td-p/1463340
+
