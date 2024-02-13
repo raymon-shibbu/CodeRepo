@@ -33,9 +33,6 @@ Excel.Workbook([Content])
 ##Filter by list
 Table.SelectRows(#prevstep, each List.Contains(listname, [ColumnName]))
 
-##Filter by list
-Table.SelectRows(#prevstep, each List.Contains(listname, [ColumnName]))
-
 ##Define datatype with custom Columns	add optional argument type after change type 
 https://gorilla.bi/power-query/define-data-type-custom-column/
 Data Type	Syntax 1	Syntax 2
