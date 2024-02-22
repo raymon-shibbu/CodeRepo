@@ -63,6 +63,22 @@ authenticate with credentials
 
 
 
+## Load Contents of Sharepoint
+
+1. Connect using SharePoint List to any list within the correct site. (using Windows credentials)
+
+2. In query editor manually change the source code
+
+
+from this:
+ 
+= SharePoint.Tables("https://isharenew.company.com/sites/example_site", [ApiVersion = 15])
+ 
+
+to this :
+ 
+
+= SharePoint.Contents("https://isharenew.company.com/sites/example_site", [ApiVersion = 14])
 
 
 
