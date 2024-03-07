@@ -46,7 +46,21 @@ MinDateMessage = ""Minimum date to be selected: ""
 Replaced string = PATHITEM(SUBSTITUTE(AllUsers[UserPrincipalName],"@","|"),2)
 
 
-
+#text2Rows - converted delimited string with "|" to text
+text2rows =
+    SELECTCOLUMNS (
+        GENERATE (
+            CONTROL_TABLE,
+            ADDCOLUMNS (
+                GENERATESERIES ( 1, PATHLENGTH ( [RE] ) ),
+                "REPORTENTITY", PATHITEM ( [RE], [Value], TEXT )
+            )
+        ),
+        "EMAIL", [EMAIL ID],
+        "ReportingEntities", [REPORTENTITY],
+        "BRAND",CONTROL_TABLE[BRAND],
+        "CHANNEL",CONTROL_TABLE[CHANNEL]
+    )
 
 
 
