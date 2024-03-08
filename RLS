@@ -1,0 +1,23 @@
+# DAX Filter to apply pipe delimited values and ALL as entry in control table
+
+[Brand]
+    IN (
+        VAR br =
+            MAXX (
+                FILTER ( 'CONTROL_TABLE', [EMAIL ID] = USERPRINCIPALNAME () ),
+                'CONTROL_TABLE'[BR]
+            )
+        VAR brlen =
+            PATHLENGTH ( br )
+        VAR brtable =
+            ADDCOLUMNS ( GENERATESERIES ( 1, brlen ), "brlist", PATHITEM ( br, [Value] ) )
+        VAR br_list =
+            SELECTCOLUMNS ( brtable, "brnd", [brlist] )
+        VAR brtab =
+            ADDCOLUMNS ( VALUES ( FACT_Earth_Training[Brand] ), "ALL", "ALL" )
+        RETURN
+            SELECTCOLUMNS (
+                FILTER ( brtab, [Brand] IN br_list || [ALL] IN br_list ),
+                [Brand]
+            )
+    )
