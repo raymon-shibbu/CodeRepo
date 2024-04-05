@@ -81,4 +81,8 @@ to this :
 = SharePoint.Contents("https://isharenew.company.com/sites/example_site", [ApiVersion = 14])
 
 
+## promote headers within csv file 
+= Table.AddColumn(#"Removed Other Columns", "Custom", each Table.PromoteHeaders(Csv.Document([Content])))
+
+
 
