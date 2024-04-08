@@ -85,4 +85,10 @@ to this :
 = Table.AddColumn(#"Removed Other Columns", "Custom", each Table.PromoteHeaders(Csv.Document([Content])))
 
 
+## Filter TopN values
+= Table.SelectRows(#"Sorted Rows", each
+    let list=List.Min(List.FirstN(List.Sort(List.Distinct(#"Sorted Rows"[Week Num]),Order.Descending),3))
+    in
+     [Week Num] >= list)
+
 
