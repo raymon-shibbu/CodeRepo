@@ -1,0 +1,2 @@
+##Merge multiple csv as one file
+@(Get-ChildItem -Filter *.csv).fullname | Import-Csv |Export-Csv ./merged.csv -NoTypeInformation
