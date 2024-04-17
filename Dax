@@ -63,7 +63,14 @@ text2rows =
     )
 
 
+## Simple Row NUm for table visual
+#rownum = CALCULATE (
+DISTINCTCOUNT(GatewayConnections[datasourceid]),
+FILTER(ALLSELECTED(GatewayConnections), GatewayConnections[datasourceid] <= MAX(GatewayConnections[datasourceid]))
+)
 
+## RowNum based on dax measure values
+https://radacad.com/generating-row-number-in-power-bi-visualization-using-dax
 
 
 
