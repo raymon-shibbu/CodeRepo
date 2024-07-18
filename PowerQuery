@@ -1,3 +1,12 @@
+
+##Filter by MAx value
+let
+    Source = #table(type table[Value = Int64.Type],List.Zip({{1..10}&{1..10}&{1..10}})),
+    #"Filtered Rows" = Table.SelectRows(Source, each ([Value] = List.Max(Source[Value])))
+in
+    #"Filtered Rows"
+
+
 ##API Call with Client Secret & Client ID
 
 	let
