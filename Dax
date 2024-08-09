@@ -1,3 +1,14 @@
+#Time duration
+Total Duration = 
+var starttime = MIN(RealTimeData[Start Time])
+var endtime= MAX(RealTimeData[End Time])
+VAR rawresult = endtime-starttime
+VAR finalresult =
+    FORMAT ( INT ( rawresult ), "0:" ) & FORMAT ( rawresult, "hh:nn:ss" )
+RETURN
+    finalresult
+
+
 #Hide Unavailable Date
 Flag=  INT(NOT(ISEMPTY(table_name)))
 
