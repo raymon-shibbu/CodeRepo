@@ -1,3 +1,14 @@
+## Replace tables with Dataflow tables
+ 
+
+let
+    Source = PowerPlatform.Dataflows(null),
+    Workspaces = Source{[Id="Workspaces"]}[Data],
+    #"wokrspaceid" = Workspaces{[workspaceId="c7e60087-de7d-47ee-9058-870561595b39"]}[Data],
+    #"dataflowid" = #"wokrspaceid"{[dataflowId="80ac8046-1118-4c63-b159-0af633321a2f"]}[Data],
+    dataflowtable = #"dataflowid"{[entity="dataflowtablename",version=""]}[Data]
+in
+    dataflowtable
 
 ##Filter by MAx value
 let
