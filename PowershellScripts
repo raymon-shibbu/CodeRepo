@@ -1,2 +1,8 @@
 ##Merge multiple csv as one file
 @(Get-ChildItem -Filter *.csv).fullname | Import-Csv |Export-Csv ./merged.csv -NoTypeInformation
+
+
+
+##rename part of file in folder
+
+ ls *.csv | Rename-Item -NewName {$_.name -replace "oldtext","newtext"}
