@@ -1,0 +1,18 @@
+
+Connect-MgGraph -Scopes "Group.Read.All", "User.Read.All"
+
+$groupId = "xxxx"
+$outputPath = "D:\AllGroupMembers.csv"  # Change path as needed
+
+# Get all members
+$members = Get-MgGroupMember -GroupId $groupId -All
+
+# Filter only user objects and extract properties
+$users = $members | Where-Object { $_.AdditionalProperties["@odata.type"] -eq "#microsoft.graph.user" }
+
+# Select and export to CSV
+$users | Select-Object @{Name="DisplayName";Expression={$_.AdditionalProperties["displayName"]}},
+                        @{Name="UserPrincipalName";Expression={$_.AdditionalProperties["userPrincipalName"]}} |
+        Export-Csv -Path $outputPath -NoTypeInformation
+
+Write-Host "Exported group members to $outputPath"
