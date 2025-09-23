@@ -1,3 +1,10 @@
+
+## Filter parameter to show all values if parameter is null
+
+if filter2 <> null then Table.SelectRows(#"Filtered Rows", each [Column Y] = filter2) else #"Filtered Rows"
+
+
+
 ## Replace tables with Dataflow tables
  
 
