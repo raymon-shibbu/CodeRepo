@@ -28,7 +28,7 @@ $UserPBIProLicensesCSV = $BasePath + "UserPBIProLicenses.csv"
 See MS Licensing Service Plan reference: 
 https://docs.microsoft.com/en-us/azure/active-directory/users-groups-roles/licensing-service-plan-reference
 #>
-$PBIProServicePlanID = "70d33638-9c74-4d01-bfd3-562de28bd4ba"
+$PBIProServicePlanID = "XXXX"
 
 #4. Retrieve and export users
 
