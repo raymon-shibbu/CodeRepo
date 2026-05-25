@@ -14,7 +14,7 @@ New-PowerBIWorkspace -Name "WSNAME"
 Connect-PowerBIServiceAccount
 
 # Grab pointer to object and assign to capacity
-$workspace1 = Get-PowerBIWorkspace -Scope Organization -Filter "name eq 'PBI JLC DEV DS Manuf Finance (JLC-CH)'"
+$workspace1 = Get-PowerBIWorkspace -Scope Organization -Filter "name eq 'XXXX'"
 Set-PowerBIWorkspace -Scope Organization -Id $workspace1.Id  -CapacityId "CapacityId"
 
 
