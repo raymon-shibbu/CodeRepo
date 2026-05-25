@@ -1,7 +1,7 @@
 $Results= Invoke-PowerBIRestMethod -url "https://api.powerbi.com/v1.0/myorg/gateways/{"Datasetid"}/datasources" -Method Get | ConvertFrom-Json
 foreach($result in $Results.value)
 {
-$URI = "https://api.powerbi.com/v1.0/myorg/gateways/{6a6468a4-6559-4ae0-b6b9-162119e8df8b}/datasources/{" + $result.id +"}/users"
+$URI = "https://api.powerbi.com/v1.0/myorg/gateways/{xxxxx}/datasources/{" + $result.id +"}/users"
 #Write-Host $URI
 $Connections= Invoke-PowerBIRestMethod -url $URI -Method Get | ConvertFrom-Json
 #Write-Host $Connections
