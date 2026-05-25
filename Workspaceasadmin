@@ -1,0 +1,27 @@
+let
+    Source = Json.Document(Web.Contents(
+    "https://api.powerbi.com/v1.0/myorg/",
+    [
+        RelativePath = "admin/groups?$filter=type eq 'Workspace' and isOnDedicatedCapacity eq true&$top=200&$expand=datasets,dataflows,reports,dashboards,users",
+        Headers = [Authorization = "Bearer " & GetAccessToken()]
+    ]
+)),
+    
+    // Convert API response to table
+    GroupsTable = Table.FromRecords({Source}),
+    
+    // Expand workspace details
+    ExpandedData = Table.ExpandListColumn(GroupsTable, "value"),
+    ExpandedColumns = Table.ExpandRecordColumn(
+        ExpandedData, 
+        "value", 
+        {"id", "isReadOnly", "isOnDedicatedCapacity", "capacityId", 
+         "defaultDatasetStorageFormat", "type", "state", "name", 
+         "datasets", "dataflows", "reports", "dashboards", "users"},
+        {"workspaceId", "isReadOnly", "isOnDedicatedCapacity", "capacityId", 
+         "defaultDatasetStorageFormat", "type", "state", "workspaceName", 
+         "datasets", "dataflows", "reports", "dashboards", "users"}
+    ),
+    #"Removed Other Columns" = Table.SelectColumns(ExpandedColumns,{"workspaceId", "isReadOnly", "isOnDedicatedCapacity", "capacityId", "defaultDatasetStorageFormat", "type", "state", "workspaceName", "datasets", "dataflows", "reports", "dashboards", "users"})
+in
+    #"Removed Other Columns"
